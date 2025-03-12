@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.crudpersonas.ui.theme.CrudPersonasTheme
 import com.example.crudpersonas.views.ViewListadoPersonas
+import com.example.crudpersonas.vm.VMListadoPersonas
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CrudPersonasTheme {
-                ViewListadoPersonas()
+                ViewListadoPersonas(VMListadoPersonas())
             }
         }
     }

@@ -11,36 +11,55 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
 import com.example.crudpersonas.dto.DTOPersona
+import com.example.crudpersonas.vm.VMListadoPersonas
 import java.time.LocalDateTime
 
-@Preview(showBackground = true)
 @Composable
-fun ViewListadoPersonas(){
+fun ViewListadoPersonas(viewModel: VMListadoPersonas){
 
-    Box(
-        Modifier
-            .fillMaxSize()
-            .padding(20.dp)
-            .background(Color.Black),
-    ){
-        CrudPersonas()
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /* Acción del FAB */ },
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
+                Text("+") // Puedes cambiarlo por un ícono
+            }
+        }
+    ) { paddingValues ->
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .background(Color.Black),
+        ) {
+            CrudPersonas(viewModel)
+        }
     }
-
 }
 
+
 @Composable
-fun CrudPersonas() {
+fun CrudPersonas(viewModel: VMListadoPersonas) {
+
+    val listaPersonas :List<DTOPersona> = viewModel.ListaPersonas.observeAsState().value ?: emptyList()
+
     LazyColumn {
-        items(ListaPersonas()) { persona ->
+        items(listaPersonas) { persona ->
             ItemPersona(persona)
         }
     }
@@ -79,22 +98,7 @@ fun ItemPersona(persona: DTOPersona) {
 
 }
 
-fun ListaPersonas() : List<DTOPersona> {
-    val imageUrl = "https://thispersondoesnotexist.com/"
-    //Lista temporal, hasta que luego se obtenga de la API
-        return listOf(
-            DTOPersona(1, "Juan", "Pérez", "123456789", "Calle Mayor 1", imageUrl, LocalDateTime.now(), 1),
-            DTOPersona(2, "Ana", "García", "987654321", "Avenida Central 2", imageUrl, LocalDateTime.now(), 2),
-            DTOPersona(3, "Carlos", "López", "654321987", "Plaza del Sol 3", imageUrl, LocalDateTime.now(), 3),
-            DTOPersona(4, "María", "Martínez", "111222333", "Calle Luna 4", imageUrl, LocalDateTime.now(), 1),
-            DTOPersona(5, "Pedro", "Rodríguez", "444555666", "Avenida Libertad 5", imageUrl, LocalDateTime.now(), 2),
-            DTOPersona(6, "Laura", "Sánchez", "777888999", "Calle del Río 6", imageUrl, LocalDateTime.now(), 3),
-            DTOPersona(7, "Javier", "Fernández", "999000111", "Plaza Mayor 7", imageUrl, LocalDateTime.now(), 1),
-            DTOPersona(8, "Isabel", "Díaz", "222333444", "Calle Ancha 8", imageUrl, LocalDateTime.now(), 2),
-            DTOPersona(9, "Miguel", "González", "555666777", "Avenida del Mar 9", imageUrl, LocalDateTime.now(), 3),
-            DTOPersona(10, "Sofía", "Ruiz", "888999000", "Calle Estrecha 10", imageUrl, LocalDateTime.now(), 1)
-        )
-}
+
 
 
 

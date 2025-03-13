@@ -9,6 +9,6 @@ data class DTOPersona(
     val telefono: String = "",
     val direccion: String ="",
     val foto: String = "",
-    val fechaNacimiento: LocalDateTime = LocalDateTime.of(1900, 1, 1, 0, 0),
+    val fechaNacimiento: String = "",
     val idDepartamento: Int = 0){
 }

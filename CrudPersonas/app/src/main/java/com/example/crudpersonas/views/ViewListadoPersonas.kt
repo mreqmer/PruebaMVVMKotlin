@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,13 +26,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.crudpersonas.dto.DTOPersona
 import com.example.crudpersonas.vm.VMListadoPersonas
 import java.time.LocalDateTime
 
 @Composable
-fun ViewListadoPersonas(viewModel: VMListadoPersonas){
+fun ViewListadoPersonas(viewModel: VMListadoPersonas, navController: NavHostController){
+
+    val cargando = viewModel.Cargando.observeAsState().value ?: false
 
     Scaffold(
         floatingActionButton = {
@@ -46,8 +52,14 @@ fun ViewListadoPersonas(viewModel: VMListadoPersonas){
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(Color.Black),
+            contentAlignment = Alignment.Center
         ) {
-            CrudPersonas(viewModel)
+            if (cargando) {
+                CircularProgressIndicator(modifier = Modifier.height(50.dp).width(50.dp), color = Color.Red)
+            }else{
+                CrudPersonas(viewModel)
+            }
+
         }
     }
 }

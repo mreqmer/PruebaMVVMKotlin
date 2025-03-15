@@ -61,4 +61,9 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation (libs.firebase.firestore.ktx)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 }

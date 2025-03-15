@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1077954194857",
+    "project_id": "crud-personas-ejemplo",
+    "storage_bucket": "crud-personas-ejemplo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077954194857:android:61a3fef61d7860cdbbe8b8",
+        "android_client_info": {
+          "package_name": "com.example.crudpersonas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsxSQ-I12z-2gjHKcFlKufCEBSnRt8DSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

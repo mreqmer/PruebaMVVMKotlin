@@ -16,7 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.crudpersonas.ui.theme.CrudPersonasTheme
 import com.example.crudpersonas.views.ViewListadoPersonas
+import com.example.crudpersonas.views.ViewLogin
 import com.example.crudpersonas.vm.VMListadoPersonas
+import com.example.crudpersonas.vm.VMLogin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +29,9 @@ class MainActivity : ComponentActivity() {
             CrudPersonasTheme {
                 NavHost(
                     navController = navController,
-                    startDestination = "listado_personas"
+                    startDestination = "login"
                 ) {
+                    composable(route="login") { ViewLogin(VMLogin(), navController) }
                     composable(route="listado_personas") { ViewListadoPersonas(VMListadoPersonas(), navController) }
                     //composable(route="nueva_persona") { ViewNuevaPersona(VMListadoPersonas(), navController) }
             }

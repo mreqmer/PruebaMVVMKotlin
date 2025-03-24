@@ -37,7 +37,9 @@ android {
     buildFeatures {
         compose = true
     }
+
 }
+
 
 dependencies {
 
@@ -61,4 +63,5 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation("io.appwrite:sdk-for-android:6.1.0")
 }
